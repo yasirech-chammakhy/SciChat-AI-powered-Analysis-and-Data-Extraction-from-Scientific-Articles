@@ -3,8 +3,8 @@
 ## Project Overview
 Welcome to NLP for Scientific Article Analysis in AI: Data Extraction by Chatbot! This project explores the use of natural language processing (NLP) techniques to automatically extract relevant data from scientific articles and present it in a structured format using a chatbot interface. The goal of this project is to enable researchers to quickly and easily access the key findings and insights contained within these articles, saving them time and effort in their work.
 The purpose of this project is twofold:
-1- To develop and train a chatbot that can accurately extract specific types of data from scientific articles, such as authors, titles, abstracts, and keywords.
-2- To explore the use of NLP techniques for automating the process of extracting relevant information from large volumes of text data, with potential applications in fields such as research analysis, document summarization, and machine learning.
+- To develop and train a chatbot that can accurately extract specific types of data from scientific articles, such as authors, titles, abstracts, and keywords.
+- To explore the use of NLP techniques for automating the process of extracting relevant information from large volumes of text data, with potential applications in fields such as research analysis, document summarization, and machine learning.
 
 
 ## Project Structure
