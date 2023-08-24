@@ -1,32 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>ChatBot</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Interface</title>
 </head>
 <body>
-    <div id="chatbox">
-        <p id="chatlogs">
-        <p id="bot">ChatBot: Hello! How can I help you?</p>
-        </p>
+    <h1>Chatbot Interface</h1>
+    <div>
+        <h2>Chat History:</h2>
+        <ul>
+            {% for sender, message in chat_history %}
+                <li>{{ sender }}: {{ message }}</li>
+            {% endfor %}
+        </ul>
     </div>
-    <div id="inputbox">
-        <input type="text" id="user_input">
-        <input type="submit" value="Send" onclick="getBotResponse()">
-    </div>
-    <script>
-        function getBotResponse() {
-            var user_input = document.getElementById("user_input").value;
-            document.getElementById("user_input").value = "";
-            document.getElementById("chatlogs").innerHTML += "<p id='user'>You: " + user_input + "</p>";
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/get?msg=' + user_input, true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    document.getElementById("chatlogs").innerHTML += "<p id='bot'>ChatBot: " + xhr.responseText + "</p>";
-                }
-            }
-            xhr.send();
-        }
-    </script>
+    <form method="POST" action="/">
+        <input type="text" name="user_input" placeholder="Type your message..." />
+        <button type="submit">Send</button>
+    </form>
 </body>
 </html>

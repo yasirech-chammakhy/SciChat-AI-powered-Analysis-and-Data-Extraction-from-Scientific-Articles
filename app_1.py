@@ -10,7 +10,7 @@ from langchain.chains import ConversationalRetrievalChain
 import gradio as gr
 
 # Replicate API token
-os.environ['REPLICATE_API_TOKEN'] = "r8_KtB7NRgsT3NQutRH3hvZtXGuPiKzIDQ1uix8J"
+os.environ['REPLICATE_API_TOKEN'] = "r8_bCTuTjOVK9zHstpBtcyUryPRZITxnww47B5hp"
 
 # Initialize Pinecone
 pinecone.init(api_key='f5444e56-58db-42db-afd6-d4bd9b2cb40c', environment='asia-southeast1-gcp-free')
@@ -45,26 +45,24 @@ qa_chain = ConversationalRetrievalChain.from_llm(
 
 chat_history = []
 # Define the Gradio interface function
-from flask import Flask, render_template, request
-
-app = Flask(__name__)
-
-chat_history = []
-# Your existing chat_interface function
 def chat_interface(prompt):
     result = qa_chain({'question': prompt, 'chat_history': chat_history})
     chat_history.append((prompt, result['answer']))
+    
     conversation_history = "\n".join([f"You: {q}\nChatbot: {a}" for q, a in chat_history])
+    
     return conversation_history
 
-@app.route("/")
-def home():
-    return render_template("index.html")
+# Create the Gradio interface
+iface = gr.Interface(
+    fn=chat_interface,
+    inputs="text",
+    outputs="text",
+    live=True,
+    capture_session=True,
+    title="Chatbot Interface",
+    description="Ask questions and get answers from the chatbot."
+)
 
-@app.route("/get")
-def get_bot_response():
-    user_text = request.args.get('msg')  # Get the user input from the URL after /get
-    return str(chat_interface(user_text))  # Get the chatbot response and send it back
-
-if __name__ == "__main__":
-    app.run()
+# Run the Gradio interface
+iface.launch()

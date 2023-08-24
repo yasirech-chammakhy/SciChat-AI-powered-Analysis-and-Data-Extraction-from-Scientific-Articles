@@ -9,8 +9,11 @@ from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.chains import ConversationalRetrievalChain
 import gradio as gr
 
+from flask import Flask, render_template, request
+app = Flask(__name__)
+
 # Replicate API token
-os.environ['REPLICATE_API_TOKEN'] = "r8_KtB7NRgsT3NQutRH3hvZtXGuPiKzIDQ1uix8J"
+os.environ['REPLICATE_API_TOKEN'] = "r8_bCTuTjOVK9zHstpBtcyUryPRZITxnww47B5hp"
 
 # Initialize Pinecone
 pinecone.init(api_key='f5444e56-58db-42db-afd6-d4bd9b2cb40c', environment='asia-southeast1-gcp-free')
@@ -42,27 +45,18 @@ qa_chain = ConversationalRetrievalChain.from_llm(
     return_source_documents=True
 )
 
-
 chat_history = []
-# Define the Gradio interface function
-def chat_interface(prompt):
-    result = qa_chain({'question': prompt, 'chat_history': chat_history})
-    chat_history.append((prompt, result['answer']))
-    
-    conversation_history = "\n".join([f"You: {q}\nChatbot: {a}" for q, a in chat_history])
-    
-    return conversation_history
 
-# Create the Gradio interface
-iface = gr.Interface(
-    fn=chat_interface,
-    inputs="text",
-    outputs="text",
-    live=True,
-    capture_session=True,
-    title="Chatbot Interface",
-    description="Ask questions and get answers from the chatbot."
-)
+@app.route('/', methods=['GET', 'POST'])
+def chat():
+    if request.method == 'POST':
+        user_input = request.form['user_input']
+        if user_input:
+            result = qa_chain({'question': user_input, 'chat_history': chat_history})
+            chat_history.append(("You", user_input))
+            chat_history.append(("Chatbot", result['answer']))
+    
+    return render_template('index.html', chat_history=chat_history)
 
-# Run the Gradio interface
-iface.launch()
+if __name__ == '__main__':
+    app.run(debug=True)
