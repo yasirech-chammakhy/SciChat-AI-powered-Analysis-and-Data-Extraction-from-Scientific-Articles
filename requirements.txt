@@ -1,0 +1,8 @@
+# pip install -r requirements.txt
+langchain
+pypdf
+unstructured
+sentence-transformers
+pinecone-client
+llama-cpp-python
+huggingface-hub

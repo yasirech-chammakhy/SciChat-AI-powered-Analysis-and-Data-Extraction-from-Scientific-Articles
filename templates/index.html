@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ChatBot</title>
+</head>
+<body>
+    <div id="chatbox">
+        <p id="chatlogs">
+        <p id="bot">ChatBot: Hello! How can I help you?</p>
+        </p>
+    </div>
+    <div id="inputbox">
+        <input type="text" id="user_input">
+        <input type="submit" value="Send" onclick="getBotResponse()">
+    </div>
+    <script>
+        function getBotResponse() {
+            var user_input = document.getElementById("user_input").value;
+            document.getElementById("user_input").value = "";
+            document.getElementById("chatlogs").innerHTML += "<p id='user'>You: " + user_input + "</p>";
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/get?msg=' + user_input, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    document.getElementById("chatlogs").innerHTML += "<p id='bot'>ChatBot: " + xhr.responseText + "</p>";
+                }
+            }
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
