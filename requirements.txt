@@ -1,8 +1,6 @@
 # pip install -r requirements.txt
-langchain
-pypdf
-unstructured
-sentence-transformers
-pinecone-client
-llama-cpp-python
-huggingface-hub
+flask==2.1.1
+pinecone==1.10.0
+langchain==0.1.0  # Replace with the actual version if available
+sentence-transformers==2.1.0
+python-dotenv==0.19.1
