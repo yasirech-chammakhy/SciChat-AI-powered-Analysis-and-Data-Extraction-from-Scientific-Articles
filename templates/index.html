@@ -4,20 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot Interface</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Chatbot Interface</h1>
-    <div>
-        <h2>Chat History:</h2>
-        <ul>
-            {% for sender, message in chat_history %}
-                <li>{{ sender }}: {{ message }}</li>
-            {% endfor %}
-        </ul>
+    <div class="container">
+        <div class="pdf-container">
+            <!-- Display PDF content here -->
+            <iframe src="{{ url_for('static', filename='2207.02696.pdf') }}" width="100%" height="600px"></iframe>
+        </div>
+        <div class="chat-container">
+            <div class="chat-box">
+                {% for sender, message in chat_history %}
+                    <div class="chat-message {% if sender == 'You' %}user-message{% else %}bot-message{% endif %}">
+                        <p>{{ message }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="user-input">
+                <form method="POST" action="/" class="message-form">
+                    <input type="text" name="user_input" placeholder="Type your message..." />
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div>
     </div>
-    <form method="POST" action="/">
-        <input type="text" name="user_input" placeholder="Type your message..." />
-        <button type="submit">Send</button>
-    </form>
+    
+    <div class="made-by">
+        Made By ECH-CHAMMAKHY Yasir and BAHMAD Youssef
+    </div>
 </body>
 </html>
