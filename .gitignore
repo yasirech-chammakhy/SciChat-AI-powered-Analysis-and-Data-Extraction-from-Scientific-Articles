@@ -130,4 +130,4 @@ dmypy.json
 .pyre/
 
 # chatbot but with gradio
-app_1.py/
+app_1.py
