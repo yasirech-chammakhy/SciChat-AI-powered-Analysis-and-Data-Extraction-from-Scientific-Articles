@@ -9,9 +9,16 @@
 <body>
     <div class="container">
         <div class="pdf-container">
-            <!-- Display PDF content here -->
-            <iframe src="{{ url_for('static', filename='2207.02696.pdf') }}" width="100%" height="600px"></iframe>
+            <h1 class="title">SciChat</h1>
+            <p class="slogan">Where Human Curiosity Meets AI Understanding!</p>
+            <form method="post" action="/update_pdf">
+                <input type="text" name="pdf_path" placeholder="Enter PDF file path" class="pdf-input">
+                <button type="submit">Update PDF</button>
+            </form>
         </div>
+        
+        {% if show_chat %}
+        
         <div class="chat-container">
             <div class="chat-box">
                 {% for sender, message in chat_history %}
@@ -27,10 +34,10 @@
                 </form>
             </div>
         </div>
+        {% endif %}
     </div>
-    
-    <div class="made-by">
-        Made By ECH-CHAMMAKHY Yasir and BAHMAD Youssef
-    </div>
+    <footer class="footer">
+        <p>Made By <em><strong>ECH-CHAMMAKHY Yasir</strong></em> and <em><strong>BAHMAD Youssef</strong></em></p>
+    </footer>
 </body>
 </html>

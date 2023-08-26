@@ -1,89 +1,148 @@
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.4;
-  background-color: rgb(7, 7, 7);
+/* Reset some default styles */
+body, h1, h2, h3, p {
   margin: 0;
   padding: 0;
 }
 
+/* Set background color and font */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
 .container {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  height: 100vh; /* Use the full viewport height */
   padding: 20px;
 }
 
-.pdf-container {
-  flex: 1;
-  margin-right: 20px;
-}
-
+/* Chat container styles */
+/* Chat container styles */
 .chat-container {
-  flex: 1;
+  width: 70%;
+  background-color: #ffffff;
   border: 1px solid #ccc;
+  border-radius: 5px;
   padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 100px; /* Adjust margin to create space for the footer */
+}
+
+
+/* PDF container styles */
+.pdf-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh; /* Adjusted height */
+  text-align: center;
+}
+
+
+.pdf-container h1.title {
+  font-size: 48px;
+  margin-bottom: 10px;
+  color: #007bff;
+}
+
+.pdf-container p.slogan {
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.pdf-container form {
+  margin-top: 20px;
+  width: 100%;
   max-width: 400px;
 }
 
-.chat-box {
+.pdf-container input[name="pdf_path"] {
   width: 100%;
-  max-width: 2500px;
-  background-color: white;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  overflow-y: scroll;
-  max-height: 60vh;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.pdf-container button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.pdf-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Chat box styles */
+.chat-box {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 20px;
 }
 
 .chat-message {
-  margin-bottom: 10px;
   padding: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .user-message {
-  background-color: #DCF8C6;
-  align-self: flex-end;
+  background-color: #f4f4f4;
 }
 
 .bot-message {
-  background-color: #E0E0E0;
-  align-self: flex-start;
+  background-color: #d6eaf8;
 }
 
+/* User input styles */
 .user-input {
   display: flex;
-  width: 100%;
-  max-width: 500px;
-  margin-top: 15px;
+  align-items: center;
 }
 
 .message-form {
   display: flex;
-  flex-grow: 1;
+  width: 100%;
 }
 
-input[type="text"] {
-  flex-grow: 1;
-  padding: 8px;
-  border: none;
+.message-form input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-button {
-  background-color: #4CAF50;
+.message-form button {
+  background-color: #007bff;
+  color: #fff;
   border: none;
   border-radius: 5px;
-  color: white;
-  padding: 8px 15px;
+  padding: 10px 20px;
   cursor: pointer;
+  margin-left: 10px;
 }
 
-.made-by {
-  text-align: center;
-  margin-top: 20px;
-  color: white;
-  font-size: 14px;
+.message-form button:hover {
+  background-color: #0056b3;
 }
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-top: 1px solid #ccc;
+  border-radius: 5px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
