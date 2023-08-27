@@ -38,4 +38,4 @@ The purpose of this project is twofold:
   ```
 
 ## Demo
-![Project Screenshot](image.png)
+![Project Screenshot](image.jpeg)
